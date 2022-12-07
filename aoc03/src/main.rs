@@ -57,10 +57,10 @@ fn part2(input: &str) -> usize {
 }
 
 fn to_index(val: u8) -> usize {
-    if val > 96 {
-        val as usize - 97
+    if val >= b'a' {
+        (val  - b'a') as usize
     } else {
-        val as usize - 65 + 26
+        (val - b'A') as usize + 26
     }
 }
 
