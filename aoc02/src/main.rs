@@ -100,7 +100,7 @@ enum Sharp {
 }
 
 impl Sharp {
-    // compare to result, self win
+    // compare to other, self win
     fn win(&self) -> Self {
         use Sharp::*;
         match self {
