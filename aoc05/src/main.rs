@@ -56,13 +56,9 @@ impl Machine {
     fn move_all(&self) -> String {
         let mut stacks = self.stacks.clone();
         for cmd in &self.commands {
-            let mut cache = vec![];
-            for _ in 0..cmd.crates {
-                if let Some(v) = stacks[(cmd.source - 1) as usize].pop() {
-                    cache.insert(0, v);
-                }
-            }
-            stacks[(cmd.target - 1) as usize].extend(cache);
+            let src = &mut stacks[(cmd.source - 1) as usize];
+            let moved = src.split_off(src.len() - cmd.crates as usize);
+            stacks[(cmd.target - 1) as usize].extend(moved);
         }
 
         Self::top(stacks)
